@@ -97,7 +97,7 @@
       rgba(93, 12, 255, 1) 0%,
       rgb(163, 64, 224) 100%
     );
-    transition: .6s ease-in-out;
+    /* transition: .6s ease-in-out; */
     transform: translate(1px);
   }
   
