@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-function TodoForm(props) {
+function GroceryForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
   const inputRef = useRef(null);
@@ -9,10 +9,14 @@ function TodoForm(props) {
     inputRef.current.focus();
   });
 
+
+  //handle change text 
   const handleChange = e => {
     setInput(e.target.value);
   };
 
+
+  //handle submit
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -22,6 +26,8 @@ function TodoForm(props) {
     });
     setInput('');
   };
+  
+ 
 
   return (
     <form onSubmit={handleSubmit} className='todo-form'>
@@ -42,7 +48,7 @@ function TodoForm(props) {
       ) : (
         <>
           <input
-            placeholder='Add a todo'
+            placeholder='Add a List'
             value={input}
             onChange={handleChange}
             name='text'
@@ -50,12 +56,20 @@ function TodoForm(props) {
             ref={inputRef}
           />
           <button onClick={handleSubmit} className='todo-button'>
-            Add todo
+            Add Item
           </button>
+          
+            <button  onClick={props.onremove} className='button'>
+              Remove All
+            </button>
+
+          
+          
+          
         </>
       )}
     </form>
   );
 }
 
-export default TodoForm;
+export default GroceryForm;

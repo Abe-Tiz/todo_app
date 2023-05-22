@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import TodoForm from './TodoForm';
+import GroceryForm from './GroceryForm';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
 
-const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
+const Grocery = ({ todos, complete, remove, update }) => {
   const [edit, setEdit] = useState({
     id: null,
     value: ''
@@ -11,7 +11,7 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
 
   // update text
   const submitUpdate = value => {
-    updateTodo(edit.id, value);
+    update(edit.id, value);
     setEdit({
       id: null,
       value: ''
@@ -19,7 +19,7 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
   };
 
   if (edit.id) {
-    return <TodoForm edit={edit} onSubmit={submitUpdate} />;
+    return <GroceryForm edit={edit} onSubmit={submitUpdate} />;
   }
 
 
@@ -30,12 +30,12 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
       className={todo.isComplete ? 'todo-row complete' : 'todo-row'}
       key={index}
     >
-      <div key={todo.id} onClick={() => completeTodo(todo.id)}>
+      <div key={todo.id} onClick={() => complete(todo.id)}>
         {todo.text}
       </div>
       <div className='icons'>
         <RiCloseCircleLine
-          onClick={() => removeTodo(todo.id)}
+          onClick={() => remove(todo.id)}
           className='delete-icon'
         />
         <TiEdit
@@ -47,4 +47,4 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
   ));
 };
 
-export default Todo;
+export default Grocery;

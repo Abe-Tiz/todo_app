@@ -1,16 +1,18 @@
 import React from 'react';
  import './App.css';
-  import TodoList from './components/TodoList';
+  import GroceryList from './components/GroceryList';
  
  
 
 function App() {
   return (
-    <div className='todo-app'>
-       <TodoList />
-       
-
-    </div>
+    <>
+        
+       <h1 className='title'>Grocery App</h1>
+      <div className='todo-app'>
+        <GroceryList />
+      </div>
+    </>
 
       
   );

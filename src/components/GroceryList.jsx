@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import TodoForm from './TodoForm';
-import Todo from './Todo';
+import GroceryForm from './GroceryForm';
+import Grocery from './Grocery';
 
-function TodoList() {
+function GroceryList() {
   const [todos, setTodos] = useState([]);
 
+
+  //add new lists
   const addTodo = todo => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
       return  
@@ -16,7 +18,8 @@ function TodoList() {
      
   };
 
-  const updateTodo = (todoId, newValue) => {
+  //update lists
+  const update = (todoId, newValue) => {
     if (!newValue.text || /^\s*$/.test(newValue.text)) {
       return;
     }
@@ -24,34 +27,44 @@ function TodoList() {
     setTodos( prev => prev.map(item => (item.id === todoId ? newValue : item)));
   };
 
-  const removeTodo = id => {
+  //remove each row lists 
+  const remove = id => {
     const removedArr = [...todos].filter( todo => todo.id !== id);
   
     setTodos(removedArr);
   };
 
-  const completeTodo = id => {
-    let updatedTodos = todos.map(todo => {
+  //complete lists
+  const complete = id => {
+    let update = todos.map(todo => {
       if (todo.id === id) {
         todo.isComplete = !todo.isComplete;
       }
       return todo;
     });
-    setTodos(updatedTodos);
+    setTodos(update);
+  };
+
+  //remove all lists
+  const removeAll = () => {
+    setTodos([]);
   };
 
   return (
     <>
-      <h1>What's the Plan for Today?</h1>
-      <TodoForm onSubmit={addTodo} />
-      <Todo
+  
+      <h1>Add List's you want</h1>
+     
+      <GroceryForm onremove={removeAll} onSubmit={addTodo} />
+    
+      <Grocery
         todos={todos}
-        completeTodo={completeTodo}
-        removeTodo={removeTodo}
-        updateTodo={updateTodo}
+        complete={complete}
+        remove={remove}
+        update={update}
       />
     </>
   );
 }
 
-export default TodoList;
+export default GroceryList;
