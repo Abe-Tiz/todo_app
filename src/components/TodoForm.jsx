@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-function GroceryForm(props) {
+function TodoForm(props) {
   const [input, setInput] = useState(props.edit ? props.edit.value : '');
 
   const inputRef = useRef(null);
 
   useEffect(() => {
     inputRef.current.focus();
-  });
+  },[]);
 
 
   //handle change text 
@@ -72,4 +72,4 @@ function GroceryForm(props) {
   );
 }
 
-export default GroceryForm;
+export default TodoForm;

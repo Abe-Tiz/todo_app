@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
-import GroceryForm from './GroceryForm';
-import Grocery from './Grocery';
-
-function GroceryList() {
+import TodoForm from './TodoForm';
+import Todo from './Todo';
+ 
+function TodoList() {
   const [todos, setTodos] = useState([]);
 
 
   //add new lists
   const addTodo = todo => {
     if (!todo.text || /^\s*$/.test(todo.text)) {
-      return  
+       return false; 
     }
+     
 
     const newTodos = [todo, ...todos];
 
@@ -34,7 +35,7 @@ function GroceryList() {
     setTodos(removedArr);
   };
 
-  //complete lists
+  //complete lists 
   const complete = id => {
     let update = todos.map(todo => {
       if (todo.id === id) {
@@ -51,13 +52,16 @@ function GroceryList() {
   };
 
   return (
+
+    
     <>
+     
   
       <h1>Add List's you want</h1>
      
-      <GroceryForm onremove={removeAll} onSubmit={addTodo} />
+      <TodoForm onremove={removeAll} onSubmit={addTodo} />
     
-      <Grocery
+      <Todo
         todos={todos}
         complete={complete}
         remove={remove}
@@ -67,4 +71,5 @@ function GroceryList() {
   );
 }
 
-export default GroceryList;
+export default TodoList
+;

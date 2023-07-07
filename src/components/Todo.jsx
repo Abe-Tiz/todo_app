@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import GroceryForm from './GroceryForm';
+import TodoForm from './TodoForm';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
 
-const Grocery = ({ todos, complete, remove, update }) => {
+const Todo = ({ todos, complete, remove, update }) => {
   const [edit, setEdit] = useState({
     id: null,
     value: ''
@@ -19,7 +19,7 @@ const Grocery = ({ todos, complete, remove, update }) => {
   };
 
   if (edit.id) {
-    return <GroceryForm edit={edit} onSubmit={submitUpdate} />;
+    return <TodoForm edit={edit} onSubmit={submitUpdate} />;
   }
 
 
@@ -47,4 +47,4 @@ const Grocery = ({ todos, complete, remove, update }) => {
   ));
 };
 
-export default Grocery;
+export default Todo;
